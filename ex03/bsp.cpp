@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bsp.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgutten <vgutten@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 17:45:35 by vguttenb          #+#    #+#             */
-/*   Updated: 2022/05/31 16:22:23 by vgutten          ###   ########.fr       */
+/*   Updated: 2022/05/31 18:23:04 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Point *	intersecX( Point const & p1, Point const & p2, Fixed const x) {
 			return new Point(x, p1.getY());
 		if (p1.getX() == p2.getX())
 			return NULL;
-		Fixed	slope = ( p1.getX() - p2.getX() ) / ( p1.getY() - p2.getY() );
+		Fixed	slope = ( p1.getY() - p2.getY() ) / ( p1.getX() - p2.getX() );
 		Fixed	incr = p1.getY() - slope * p1.getX();
 		std::cout << "I have calculated a slope of " << slope << " and an incr of " << incr << std::endl;
 		return new Point(x, Fixed(slope * x + incr));
@@ -36,7 +36,7 @@ Point *	intersecY( Point const & p1, Point const & p2, Fixed const y) {
 			return new Point(p1.getX(), y);
 		if (p1.getY() == p2.getY())
 			return NULL;
-		Fixed	slope = ( p1.getX() - p2.getX() ) / ( p1.getY() - p2.getY() );
+		Fixed	slope = ( p1.getY() - p2.getY() ) / ( p1.getX() - p2.getX() );
 		Fixed	incr = p1.getY() - slope * p1.getX();
 		std::cout << "I have calculated a slope of " << slope << " and an incr of " << incr << std::endl;
 		return new Point(Fixed((y - incr) / slope), y);
