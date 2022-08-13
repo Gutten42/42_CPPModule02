@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:19:10 by vgutten           #+#    #+#             */
-/*   Updated: 2022/08/13 14:52:17 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/13 17:00:00 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,6 @@ public:
 	Fixed	operator-( Fixed const & sum ) const;
 	Fixed	operator*( Fixed const & sum ) const;
 	Fixed	operator/( Fixed const & sum ) const;
-
-	/*Fixed &	operator++( void );
-	Fixed	operator++( Fixed const & to_incr, int n );
-	Fixed &	operator--( void );
-	Fixed	operator--( Fixed const & to_incr, int n );*/
-
-/*	Fixed &	operator++( void ) ;
-	Fixed	operator++( int incr ) ;
-	Fixed &	operator--( void ) ;
-	Fixed	operator--( int decr ) ;*/
 
 	Fixed &	operator++( void ) ;
 	Fixed	operator++( int incr ) ;

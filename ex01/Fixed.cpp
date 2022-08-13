@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:39:43 by vgutten           #+#    #+#             */
-/*   Updated: 2022/08/13 15:07:36 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/13 16:54:33 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,28 @@ Fixed::~Fixed ( void ) {
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed ( Fixed const & to_copy )/*: _n(to_copy.getRawBits())*/ {
+Fixed::Fixed ( Fixed const & to_copy ) {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = to_copy;
 }
 
 Fixed::Fixed( int const n ) {
 	std::cout << "Int constructor called" << std::endl;
-	//this->setRawBits(n * pow(2, frac));
 	this->_n = n * pow(2, frac);
 }
 
 Fixed::Fixed( float const n ) {
 	std::cout << "Float constructor called" << std::endl;
-	//this->setRawBits((int)roundf(n * pow(2, frac)));
 	this->_n = (int)roundf(n * pow(2, frac));
 }
 
 Fixed &	Fixed::operator=( Fixed const & to_assign ) {
 	std::cout << "Assignation operator called" << std::endl;
 	this->_n = to_assign.getRawBits();
-//	this->setRawBits(to_assign.getRawBits());
 	return *this;
 }
 
 int	Fixed::getRawBits( void ) const {
-//	std::cout << "getRawBits member function called" << std::endl;
 	return _n;
 }
 
