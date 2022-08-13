@@ -6,7 +6,7 @@
 /*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:39:43 by vgutten           #+#    #+#             */
-/*   Updated: 2022/05/31 18:20:34 by vguttenb         ###   ########.fr       */
+/*   Updated: 2022/08/13 15:33:13 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ Fixed::Fixed ( Fixed const & to_copy )/*: _n(to_copy.getRawBits())*/ {
 
 Fixed::Fixed( int const n ) {
 //	std::cout << "Int constructor called" << std::endl;
-	this->setRawBits(n * pow(2, frac));
+	this->_n = n * pow(2, frac);
 }
 
 Fixed::Fixed( float const n ) {
 //	std::cout << "Float constructor called" << std::endl;
-	this->setRawBits((int)roundf(n * pow(2, frac)));
+	this->_n = (int)roundf(n * pow(2, frac));
 }
 
 Fixed &	Fixed::operator=( Fixed const & to_assign ) {
@@ -45,50 +45,50 @@ Fixed &	Fixed::operator=( Fixed const & to_assign ) {
 }
 
 bool	Fixed::operator>( Fixed const & to_compare ) const {
-	if (this->getRawBits() > to_compare.getRawBits())
+	if (_n > to_compare.getRawBits())
 		return true;
 	return false;
 }
 
 bool	Fixed::operator<( Fixed const & to_compare ) const {
-	if (this->getRawBits() < to_compare.getRawBits())
+	if (_n < to_compare.getRawBits())
 		return true;
 	return false;
 }
 
 bool	Fixed::operator>=( Fixed const & to_compare ) const {
-	if (this->getRawBits() >= to_compare.getRawBits())
+	if (_n >= to_compare.getRawBits())
 		return true;
 	return false;
 }
 
 bool	Fixed::operator<=( Fixed const & to_compare ) const {
-	if (this->getRawBits() <= to_compare.getRawBits())
+	if (_n <= to_compare.getRawBits())
 		return true;
 	return false;
 }
 
 bool	Fixed::operator==( Fixed const & to_compare ) const {
-	if (this->getRawBits() == to_compare.getRawBits())
+	if (_n == to_compare.getRawBits())
 		return true;
 	return false;
 }
 
 bool	Fixed::operator!=( Fixed const & to_compare ) const {
-	if (this->getRawBits() != to_compare.getRawBits())
+	if (_n != to_compare.getRawBits())
 		return true;
 	return false;
 }
 
 Fixed	Fixed::operator+( Fixed const & sum ) const {
 	Fixed	copy;
-	copy.setRawBits(this->getRawBits() + sum.getRawBits());
+	copy.setRawBits(_n + sum.getRawBits());
 	return copy;
 }
 
 Fixed	Fixed::operator-( Fixed const & sum ) const{
 	Fixed	copy;
-	copy.setRawBits(this->getRawBits() - sum.getRawBits());
+	copy.setRawBits(_n - sum.getRawBits());
 	return copy;
 }
 
@@ -143,7 +143,7 @@ Fixed	Fixed::operator--( Fixed & to_decr, int decr ) {
 
 Fixed &	Fixed::operator++( void ) {
 //	std::cout << "Pre-increment operator called" << std::endl;
-	this->setRawBits(this->getRawBits() + 1);
+	_n = _n + 1;
 	return *this;
 }
 
@@ -152,13 +152,13 @@ Fixed	Fixed::operator++( int incr ) {
 	if (!incr)
 		incr = 1;
 	Fixed	copy = *this;
-	this->setRawBits(this->getRawBits() + incr);
+	_n = _n + incr;
 	return copy;
 }
 
 Fixed &	Fixed::operator--( void ) {
 //	std::cout << "Pre-decrement operator called" << std::endl;
-	this->setRawBits(this->getRawBits() - 1);
+	_n = _n - 1;
 	return *this;
 }
 
@@ -167,7 +167,7 @@ Fixed	Fixed::operator--( int decr ) {
 	if (!decr)
 		decr = 1;
 	Fixed	copy = *this;
-	this->setRawBits(this->getRawBits() - decr);
+	_n = _n - decr;
 	return copy;
 }
 
@@ -182,11 +182,11 @@ void	Fixed::setRawBits( int const raw ) {
 }
 
 float	Fixed::toFloat( void ) const {
-	return (float)this->getRawBits() / pow(2, frac);
+	return (float)_n / pow(2, frac);
 }
 
 int	Fixed::toInt( void ) const {
-	return this->getRawBits() / pow(2, frac);
+	return _n / pow(2, frac);
 }
 
 std::ostream &	operator<<( std::ostream & o, Fixed const & output ) {

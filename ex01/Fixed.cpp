@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgutten <vgutten@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vguttenb <vguttenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 11:39:43 by vgutten           #+#    #+#             */
-/*   Updated: 2022/05/30 14:35:06 by vgutten          ###   ########.fr       */
+/*   Updated: 2022/08/13 15:07:36 by vguttenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@ Fixed::Fixed ( Fixed const & to_copy )/*: _n(to_copy.getRawBits())*/ {
 
 Fixed::Fixed( int const n ) {
 	std::cout << "Int constructor called" << std::endl;
-	this->setRawBits(n * pow(2, frac));
+	//this->setRawBits(n * pow(2, frac));
+	this->_n = n * pow(2, frac);
 }
 
 Fixed::Fixed( float const n ) {
 	std::cout << "Float constructor called" << std::endl;
-	this->setRawBits((int)roundf(n * pow(2, frac)));
+	//this->setRawBits((int)roundf(n * pow(2, frac)));
+	this->_n = (int)roundf(n * pow(2, frac));
 }
 
 Fixed &	Fixed::operator=( Fixed const & to_assign ) {
@@ -55,11 +57,11 @@ void	Fixed::setRawBits( int const raw ) {
 }
 
 float	Fixed::toFloat( void ) const {
-	return (float)this->getRawBits() / pow(2, frac);
+	return (float)_n / pow(2, frac);
 }
 
 int	Fixed::toInt( void ) const {
-	return this->getRawBits() / pow(2, frac);
+	return _n / pow(2, frac);
 }
 
 std::ostream &	operator<<( std::ostream & o, Fixed const & output ) {
